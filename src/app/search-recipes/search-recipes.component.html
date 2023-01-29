@@ -1,0 +1,14 @@
+<p>search-recipes works!</p>
+
+<input type="text" [formControl]="recipeControl">
+
+<ng-container *ngIf="recipeControl.value">
+    <div *ngFor="let recipe of recipes | recipeFilter:recipeControl.value as filteredRecipe">
+        <p>{{recipe.name}}</p>
+    </div>
+    
+    
+</ng-container>
+
+<hr>
+<button (click)="onSubmit()">Submit</button>

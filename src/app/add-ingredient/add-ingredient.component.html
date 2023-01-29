@@ -1,0 +1,17 @@
+<form [formGroup]="ingredientForm">
+    <mat-form-field>
+      <input matInput formControlName="ingredientName" placeholder="Ingredient Name">
+    </mat-form-field>
+
+    <p>Similar Ingredients: </p>
+        <ul *ngFor="let name of similarIngredientNames">
+            <li>{{ name.ingredientName }}</li>
+    </ul>
+
+  
+    <mat-form-field>
+      <input matInput formControlName="aisle" placeholder="Aisle">
+    </mat-form-field>
+
+    <button mat-raised-button (click)="onSubmit()">Add Ingredient</button>
+</form>
