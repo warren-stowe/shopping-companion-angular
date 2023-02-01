@@ -2,12 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { distinctUntilChanged } from 'rxjs';
-import { debounceTime } from 'rxjs';
-import { switchMap } from 'rxjs';
 import { IngredientService } from '../ingredient.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
 
 @Component({
@@ -44,6 +40,11 @@ export class AddIngredientComponent implements OnInit {
         console.error(error);
         // show error message here
       });
+  }
+
+  clear() {
+    this.ingredientForm.setValue({ ingredientName: '', aisle: '' });
+    this.similarIngredientNames = [];
   }
 
   getIngredientsByName(ingredientName: string) {
