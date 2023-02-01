@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Ingredient } from '../models/ingredient.model';
 import { Observable } from 'rxjs';
-import { ShoppingService } from '../shopping.service';
+import { ShoppingService } from '../services/shopping.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RecipeFilterPipe } from '../helpers/recipe-filter.pipe';
+import { Recipe } from '../models/recipe.model';
 
 @Component({
   selector: 'app-search-recipes',
@@ -13,7 +14,8 @@ import { RecipeFilterPipe } from '../helpers/recipe-filter.pipe';
 })
 export class SearchRecipesComponent {
 
-  recipeControl: FormControl;
+  recipeName: FormControl;
+  similarRecipes: Recipe[];
   recipeIds: Number[];
 
   recipes = [
@@ -25,11 +27,15 @@ export class SearchRecipesComponent {
   
   
   constructor(private http: HttpClient, private shoppingService: ShoppingService) { 
-    this.recipeIds = [1, 2];
-    this.recipeControl = new FormControl('');
+    this.recipeIds = [];
+    this.recipeName = new FormControl('', Validators.required);
+    this.similarRecipes = [];
   }
   
   ngOnInit() {
+    this.recipeName.valueChanges.subscribe(value => {
+      this.getRecipesByName(value);
+    })
   }
 
   onSubmit() {
@@ -53,6 +59,29 @@ export class SearchRecipesComponent {
 
   removeRecipe(recipe: Number) {
     this.recipeIds = this.recipeIds.filter(r => r !== recipe);
+  }
+
+  getRecipesByName(recipeName: string) {
+
+    if (recipeName.length >= 3) {
+
+      // this.similarIngredientNames = [];
+  
+      let response: Observable<Recipe[]>;
+      response = this.shoppingService.getRecipesByName(recipeName);
+      console.log(response);
+  
+      response.subscribe(data => {
+        this.similarRecipes = data;
+      });
+  
+      console.log(this.similarRecipes);
+    }
+  }
+
+  addToList(recipe: Recipe) {
+    this.recipeIds.push(recipe.id);
+    console.log(this.recipeIds);
   }
 }
 

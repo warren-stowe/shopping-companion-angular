@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { IngredientService } from '../ingredient.service';
+import { IngredientService } from '../services/ingredient.service';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
 
