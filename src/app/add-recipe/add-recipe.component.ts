@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AddRecipeComponent {
 
+  constructor(private recipeService: RecipeService) {  }
+
+  onSubmit() {
+    
+    let response = this.recipeService.callTest().subscribe();
+    console.log("In component: ");
+    console.log(response);
+  }
 }
