@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { RecipeService } from '../services/recipe.service';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-recipe',
@@ -12,6 +12,9 @@ import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 export class AddRecipeComponent {
 
   recipeForm: FormGroup;
+  ingredientForm: FormGroup;
+  ingredients: Array<object> = [];
+  display: Array<string> = [];
 
   constructor(private recipeService: RecipeService) { 
     this.recipeForm = new FormGroup({
@@ -19,6 +22,15 @@ export class AddRecipeComponent {
       source: new FormControl('', Validators.required),
       sourcePage: new FormControl('', Validators.required)
     })
+
+    this.ingredientForm = new FormGroup({
+      ingredientName: new FormControl('', Validators.required),
+      aisle: new FormControl('', Validators.required),
+      amount: new FormControl(1, Validators.required),
+      measurement: new FormControl('', Validators.required),
+      optional: new FormControl(false, Validators.required)
+    })
+
    }
   
 
@@ -30,77 +42,42 @@ export class AddRecipeComponent {
         source: this.recipeForm.get('source')?.value,
         sourcePage: this.recipeForm.get('sourcePage')?.value
       },
-      ingredientQuantities: [
-          
-          {
-              ingredient: {
-                  id: 3,
-                  ingredient: "ketchup",
-                  aisle: "condiments"
-              },
-              quantity: {
-                  amount: 1,
-                  measurement: "units",
-                  optional: false
-              }
-          }          ,
-          {
-              ingredient: {
-                  id: 4
-              },
-              quantity: {
-                  amount: 1,
-                  measurement: "units",
-                  optional: false
-              }
-          },
-          {
-              ingredient: {
-                  id: 5
-              },
-              quantity: {
-                  amount: 1,
-                  measurement: "units",
-                  optional: true
-              }
-          },{
-              ingredient: {
-                  id: 7
-              },
-              quantity: {
-                  amount: 8,
-                  measurement: "units",
-                  optional: false
-              }
-          },
-          {
-              ingredient: {
-                  id: 8
-              },
-              quantity: {
-                  amount: 8,
-                  measurement: "units",
-                  optional: false
-              }
-          },
-          {
-            ingredient: {
-              id: 0,
-              ingredientName: "Pineapple",
-              aisle: "Produce"
-            },
-            quantity: {
-              amount: 1,
-              measurement: "units",
-              optional: true
-            }
-          }
-      ]
+      ingredientQuantities: this.ingredients
     }
 
-    // let addRecipeRequest = JSON.stringify(request);
     let response = this.recipeService.addRecipe(request).subscribe();
+    let stringy = JSON.stringify(request);
     console.log("In component: ");
+    console.log(stringy);
     console.log(response);
+  }
+
+  addIngredient() {
+    let quantity = {
+      amount: this.ingredientForm.get('amount')?.value,
+      measurement: this.ingredientForm.get('measurement')?.value,
+      optional: this.ingredientForm.get('optional')?.value
+    }
+
+    let ingredient = {
+      id: 0,
+      ingredientName: this.ingredientForm.get('ingredientName')?.value,
+      aisle: this.ingredientForm.get('aisle')?.value,
+    }
+
+    let ingredientQuantity = {
+      ingredient: ingredient,
+      quantity: quantity
+    }
+
+    this.ingredients.push(ingredientQuantity);
+    this.display.push(ingredient.ingredientName);
+    console.log(this.ingredients);
+
+    this.clearIngredient();
+  }
+
+  clearIngredient() {
+    this.ingredientForm.reset();
   }
 }
