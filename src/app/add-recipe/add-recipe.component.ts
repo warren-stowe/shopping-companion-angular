@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { RecipeService } from '../services/recipe.service';
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-recipe',
@@ -9,16 +11,24 @@ import { RecipeService } from '../services/recipe.service';
 })
 export class AddRecipeComponent {
 
-  constructor(private recipeService: RecipeService) {  }
+  recipeForm: FormGroup;
+
+  constructor(private recipeService: RecipeService) { 
+    this.recipeForm = new FormGroup({
+      recipeName: new FormControl('', Validators.required),
+      source: new FormControl('', Validators.required),
+      sourcePage: new FormControl('', Validators.required)
+    })
+   }
   
 
   onSubmit() {
 
     let request = {
       recipe: {
-        recipeName: 'Hamburgers2',
-        source: 'Warren',
-        sourcePage: '0'
+        recipeName: this.recipeForm.get('recipeName')?.value,
+        source: this.recipeForm.get('source')?.value,
+        sourcePage: this.recipeForm.get('sourcePage')?.value
       },
       ingredientQuantities: [
           

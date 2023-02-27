@@ -1,3 +1,16 @@
 <p>add-recipe works!</p>
 
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <label for="recipeName">Recipe Name</label>
+    <input type="text" id="recipeName" formControlName="recipeName" />
+
+    <label for="source">Source</label>
+    <input type="text" id="source" formControlName="source" />
+
+    <label for="sourcePage">Source Page</label>
+    <input type="text" id="sourcePage" formControlName="sourcePage" />
+
+    <hr />
+</form>
+
 <button (click)="onSubmit()">CLICK ME</button>
