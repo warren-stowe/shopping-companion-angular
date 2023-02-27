@@ -80,4 +80,11 @@ export class AddRecipeComponent {
   clearIngredient() {
     this.ingredientForm.reset();
   }
+
+  resetForm() {
+    this.clearIngredient();
+    this.recipeForm.reset();
+    this.ingredients = [];
+    this.display = [];
+  }
 }
