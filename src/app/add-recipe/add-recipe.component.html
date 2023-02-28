@@ -4,8 +4,12 @@
     <label for="recipeName">Recipe Name</label>
     <input type="text" id="recipeName" formControlName="recipeName" />
 
+    <br>
+
     <label for="source">Source</label>
     <input type="text" id="source" formControlName="source" />
+
+    <br>
 
     <label for="sourcePage">Source Page</label>
     <input type="text" id="sourcePage" formControlName="sourcePage" />
@@ -17,23 +21,44 @@
 
 
 <form [formGroup]="ingredientForm" (ngSubmit)="addIngredient()">
+
+    <label for="id">Id</label>
+    <input type="number" id="id" formControlName="id">
+
+    <br>
+
     <label for="ingredientName">Ingredient</label>
     <input type="text" id="ingredientName" formControlName="ingredientName"/>
+
+    <br>
 
     <label for="aisle">Aisle</label>
     <input type="text" id="aisle" formControlName="aisle"/>
 
+    <br>
+
     <label for="amount">Amount</label>
     <input type="number" id="amount" formControlName="amount" />
+
+    <br>
 
     <label for="measurement">Measurement</label>
     <input type="text" id="measurement" formControlName="measurement" />
 
+    <br>
+
     <label for="optional">Optional</label>
     <input type="checkbox" id="optional" formControlName="optional" />
 
+    <br>
+
     <button>Add Ingredient</button>
 </form>
+
+<div *ngIf="similarIngredients.length > 0">
+    <h2>Similar Ingredients:</h2>
+    <button *ngFor="let ingredient of similarIngredients" (click)="addExistingIngredient(ingredient)">{{ingredient.ingredientName}}</button>
+</div>
 
 <hr>
 
