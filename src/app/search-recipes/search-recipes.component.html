@@ -3,10 +3,6 @@
 <input type="text" [formControl]="recipeName">
 
 <ng-container *ngIf="recipeName.value">
-    <div *ngFor="let recipe of recipes | recipeFilter:recipeName.value as filteredRecipe">
-        <p>{{recipe.name}}</p>
-    </div>
-
     <p>Found Recipes</p>
     <ul *ngFor="let recipe of similarRecipes">
         <a (click)="addToList(recipe)">{{ recipe.recipeName }}</a>

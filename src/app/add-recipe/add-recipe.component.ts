@@ -5,6 +5,7 @@ import { RecipeService } from '../services/recipe.service';
 import { FormControl, FormGroup, FormArray, FormsModule } from '@angular/forms';
 import { Ingredient } from '../models/ingredient.model';
 import { IngredientService } from '../services/ingredient.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-add-recipe',
