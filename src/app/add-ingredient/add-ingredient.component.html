@@ -1,17 +1,41 @@
 <form [formGroup]="ingredientForm">
-    <mat-form-field>
-      <input matInput formControlName="ingredientName" placeholder="Ingredient Name">
-    </mat-form-field>
+  <mat-grid-list cols="4" rowHeight="50px">
+    <mat-grid-tile colspan="1">
+      <mat-form-field appearance="fill">
+        <mat-label>Ingredient</mat-label>
+        <input matInput formControlName="ingredientName" placeholder="Ingredient Name">
+      </mat-form-field>
+      <!-- <mat-grid-tile colspan="3"></mat-grid-tile> -->
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <mat-form-field>
+        <input matInput formControlName="aisle" placeholder="Aisle">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2"></mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <button class="button-primary" mat-raised-button
+      (click)="onSubmit()">Add Ingredient</button>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <button class="button-warn" mat-raised-button (click)="clear()">Clear</button>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2"></mat-grid-tile>
+  </mat-grid-list>
+  
+  <mat-grid-list cols="8" rowHeight="20px">
 
-    <p>Similar Ingredients: </p>
-        <ul *ngFor="let name of similarIngredientNames">
-            <li>{{ name.ingredientName }}</li>
-    </ul>
+    <div *ngIf="similarIngredientNames.length > 0">
+      <mat-grid-tile colspan="8">
+        <p>Similar Ingredients: </p>
+      </mat-grid-tile>
+      <ul *ngFor="let name of similarIngredientNames">
+        <mat-grid-tile colspan="1">
+          <p>{{ name.ingredientName }}</p>
+        </mat-grid-tile>
+      </ul>
+    </div>
+  </mat-grid-list>
 
-    <mat-form-field>
-      <input matInput formControlName="aisle" placeholder="Aisle">
-    </mat-form-field>
 
-    <button mat-raised-button (click)="onSubmit()">Add Ingredient</button>
-    <button mat-raised-button (click)="clear()">Clear</button>
 </form>

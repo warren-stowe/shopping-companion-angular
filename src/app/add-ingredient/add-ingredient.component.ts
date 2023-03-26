@@ -5,11 +5,14 @@ import { FormBuilder } from '@angular/forms';
 import { IngredientService } from '../services/ingredient.service';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-add-ingredient',
   templateUrl: './add-ingredient.component.html',
-  styleUrls: ['./add-ingredient.component.css']
+  styleUrls: ['./add-ingredient.component.css'],
 })
 export class AddIngredientComponent implements OnInit {
 
@@ -20,9 +23,13 @@ export class AddIngredientComponent implements OnInit {
     this.ingredientForm = new FormGroup({
       ingredientName: new FormControl('', [Validators.required]),
       aisle: new FormControl('', [Validators.required])
+      
     });
-
+    
     this.similarIngredientNames = [];
+    this.similarIngredientNames[0] = new Ingredient(1, "Beef", "Meat");
+    this.similarIngredientNames[1] = new Ingredient(2, "Turket", "Meat");
+    this.similarIngredientNames[2] = new Ingredient(3, "Bread", "Bread");
   }
 
   ngOnInit() {

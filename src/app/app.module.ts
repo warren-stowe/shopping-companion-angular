@@ -15,6 +15,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeFilterPipe } from './helpers/recipe-filter.pipe';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RecipeFilterPipe } from './helpers/recipe-filter.pipe';
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
+    MatGridListModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
