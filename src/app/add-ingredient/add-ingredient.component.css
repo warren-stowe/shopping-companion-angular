@@ -1,13 +1,5 @@
-.button-primary {
-    background-color: blue;
-    color: white;
-    width: 200px;
-    font-weight: bold;
-}
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-.button-warn {
-    background-color: red;
-    color: white;
+button {
     width: 200px;
-    font-weight: bold;
 }

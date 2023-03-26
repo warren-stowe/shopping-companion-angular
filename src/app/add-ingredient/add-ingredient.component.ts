@@ -5,8 +5,10 @@ import { FormBuilder } from '@angular/forms';
 import { IngredientService } from '../services/ingredient.service';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatButtonModule} from '@angular/material/button';
+
+// import {MatGridListModule} from '@angular/material/grid-list';
+// import {MatButtonModule} from '@angular/material/button';
+// import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @Component({
@@ -18,6 +20,7 @@ export class AddIngredientComponent implements OnInit {
 
   ingredientForm: FormGroup;
   similarIngredientNames: Ingredient[];
+  aisleOptions: string[];
 
   constructor(private formBuilder: FormBuilder, private ingredientService: IngredientService) { 
     this.ingredientForm = new FormGroup({
@@ -25,6 +28,9 @@ export class AddIngredientComponent implements OnInit {
       aisle: new FormControl('', [Validators.required])
       
     });
+
+    this.aisleOptions = ["Baking", "Bread", "Canned", "Dairy", "Frozen", "International", "Meat", 
+                        "Miscellaneous", "Produce", "Seafood", "Spices"];
     
     this.similarIngredientNames = [];
     this.similarIngredientNames[0] = new Ingredient(1, "Beef", "Meat");
@@ -39,6 +45,7 @@ export class AddIngredientComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.ingredientForm);
     this.ingredientService.createIngredient(this.ingredientForm.value)
       .subscribe(response => {
         console.log(response);
