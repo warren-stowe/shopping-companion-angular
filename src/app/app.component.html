@@ -5,22 +5,19 @@
   <a routerLink="/search">Search Recipes</a>
 </nav> -->
 
-<mat-toolbar color="primary">
+<mat-toolbar>
   <mat-toolbar-row>
-    <button mat-button routerLink="/ingredients">
-      <mat-icon>add</mat-icon>
-      Add Ingredient
-    </button>
-    <button mat-button routerLink="/recipes">
-      <mat-icon>add</mat-icon>
-      Add Recipe
-    </button>
-    <button mat-button routerLink="/search">
-      <mat-icon>search</mat-icon>
-      Search Recipes
-    </button>
+        <button mat-raised-button color="primary" routerLink="/ingredients">
+          Add Ingredient
+        </button>
+        <button mat-raised-button color="accent" routerLink="/recipes">
+          Add Recipe
+        </button>
+        <button mat-raised-button color="warn" routerLink="/search">
+          Search Recipes
+        </button>
   </mat-toolbar-row>
 </mat-toolbar>
-
-
+<br>
+<br>
 <router-outlet></router-outlet>

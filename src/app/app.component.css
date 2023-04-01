@@ -1,0 +1,6 @@
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+button {
+    width: 300px;
+    margin: 50px;
+}
