@@ -21,6 +21,8 @@ export class AddRecipeComponent {
   display: Array<string> = [];
   similarIngredients: Array<Ingredient> = [];
   isExistingIngredient: boolean = false;
+  aisleOptions: string[];
+  measurementOptions: string[];
 
 
   constructor(private recipeService: RecipeService, 
@@ -35,12 +37,22 @@ export class AddRecipeComponent {
       id: new FormControl(0),
       ingredientName: new FormControl('', Validators.required),
       aisle: new FormControl('', Validators.required),
-      amount: new FormControl(1, Validators.required),
+      amount: new FormControl(null, Validators.required),
       measurement: new FormControl('', Validators.required),
       optional: new FormControl(false, Validators.required)
     })
 
     this.ingredient = new Ingredient(0, '', '');
+
+    this.similarIngredients[0] = new Ingredient(1, "Beef", "Meat");
+    this.similarIngredients[1] = new Ingredient(2, "Turkey", "Meat");
+    this.similarIngredients[2] = new Ingredient(3, "Bread", "Bread");
+
+
+    this.aisleOptions = ["Baking", "Bread", "Canned", "Dairy", "Frozen", "International", "Meat", 
+                        "Miscellaneous", "Produce", "Seafood", "Spices"];
+
+    this.measurementOptions = [ "units", "cups", "oz", "fluid oz", "tsp", "tbsp", "lb", "grams"]
    }
 
    ngOnInit() {
@@ -103,6 +115,7 @@ export class AddRecipeComponent {
     this.recipeForm.reset();
     this.ingredients = [];
     this.display = [];
+    this.similarIngredients = [];
   }
 
   getIngredientsByName(ingredientName: string) {

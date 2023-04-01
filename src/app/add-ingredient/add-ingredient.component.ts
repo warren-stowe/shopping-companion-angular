@@ -33,9 +33,9 @@ export class AddIngredientComponent implements OnInit {
                         "Miscellaneous", "Produce", "Seafood", "Spices"];
     
     this.similarIngredientNames = [];
-    this.similarIngredientNames[0] = new Ingredient(1, "Beef", "Meat");
-    this.similarIngredientNames[1] = new Ingredient(2, "Turket", "Meat");
-    this.similarIngredientNames[2] = new Ingredient(3, "Bread", "Bread");
+    // this.similarIngredientNames[0] = new Ingredient(1, "Beef", "Meat");
+    // this.similarIngredientNames[1] = new Ingredient(2, "Turket", "Meat");
+    // this.similarIngredientNames[2] = new Ingredient(3, "Bread", "Bread");
   }
 
   ngOnInit() {

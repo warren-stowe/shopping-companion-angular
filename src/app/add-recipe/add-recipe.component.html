@@ -1,63 +1,80 @@
-<p>add-recipe works!</p>
-
 <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-    <label for="recipeName">Recipe Name</label>
-    <input type="text" id="recipeName" formControlName="recipeName" />
+    <mat-grid-list cols="4" rowHeight="4:.5">
+        <mat-grid-tile colspan="1">
+            <mat-form-field appearance="fill">
+                <mat-label>Recipe</mat-label>
+                <input matInput formControlName="recipeName" placeholder="Recipe">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+            <mat-form-field appearance="fill">
+                <mat-label>Source</mat-label>
+                <input matInput formControlName="source" placeholder="Source">
+            </mat-form-field>
+        </mat-grid-tile>
 
-    <br>
+        <mat-grid-tile colspan="2">
+            <mat-form-field>
+                <mat-label>Source Page</mat-label>
+                <input matInput formControlName="sourcePage" placeholder="Source Page">
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
 
-    <label for="source">Source</label>
-    <input type="text" id="source" formControlName="source" />
-
-    <br>
-
-    <label for="sourcePage">Source Page</label>
-    <input type="text" id="sourcePage" formControlName="sourcePage" />
-
-    <hr />
-    
-    
 </form>
-
 
 <form [formGroup]="ingredientForm" (ngSubmit)="addIngredient()">
 
-    <label for="id">Id</label>
-    <input type="number" id="id" formControlName="id">
+    <mat-grid-list cols="4" rowHeight="4:.5">
+        <mat-grid-tile colspan="1" >
+            <mat-form-field appearance="fill">
+                <mat-label>Ingredient</mat-label>
+                <input matInput formControlName="ingredientName" placeholder="Ingredient Name">
+            </mat-form-field>
+        </mat-grid-tile>
 
-    <br>
+        <mat-grid-tile colspan="1">
+            <mat-form-field appearance="fill">
+                <mat-label>Aisle</mat-label>
+                <input type="text" placeholder="Aisle" matInput formControlName="aisle" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let aisleName of aisleOptions">
+                        <!-- <mat-option value="{{aisleName}}">{{aisleName}} -->
+                        <!-- </mat-option>   -->
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </mat-grid-tile>
 
-    <label for="ingredientName">Ingredient</label>
-    <input type="text" id="ingredientName" formControlName="ingredientName"/>
+        <mat-grid-tile colspan="1">
+            <mat-form-field appearance="fill">
+                <mat-label>Amount</mat-label>
+                <input matInput formControlName="amount" placeholder="Amount">
+            </mat-form-field>
+        </mat-grid-tile>
 
-    <br>
-
-    <label for="aisle">Aisle</label>
-    <input type="text" id="aisle" formControlName="aisle"/>
-
-    <br>
-
-    <label for="amount">Amount</label>
-    <input type="number" id="amount" formControlName="amount" />
-
-    <br>
-
-    <label for="measurement">Measurement</label>
-    <input type="text" id="measurement" formControlName="measurement" />
-
-    <br>
-
-    <label for="optional">Optional</label>
-    <input type="checkbox" id="optional" formControlName="optional" />
-
-    <br>
-
-    <button>Add Ingredient</button>
+        <mat-grid-tile colspan="1">
+            <mat-form-field appearance="fill">
+                <mat-label>Measurement</mat-label>
+                <input matInput formControlName="measurement" placeholder="Measurement">
+            </mat-form-field>
+        </mat-grid-tile>
+        <!-- <label for="id">Id</label> -->
+        <!-- <input type="number" id="id" formControlName="id"> -->
+        
+        <mat-grid-tile colspan="1">
+            <label for="optional">Optional</label>
+            <input type="checkbox" id="optional" formControlName="optional" />
+        </mat-grid-tile>
+        
+    </mat-grid-list>
+    <button mat-raised-button color="accent">Add Ingredient</button>
 </form>
 
 <div *ngIf="similarIngredients.length > 0">
     <h2>Similar Ingredients:</h2>
-    <button *ngFor="let ingredient of similarIngredients" (click)="addExistingIngredient(ingredient)">{{ingredient.ingredientName}}</button>
+    <button mat-raised-button color="basic" *ngFor="let ingredient of similarIngredients"
+        (click)="addExistingIngredient(ingredient)">{{ingredient.ingredientName}}</button>
 </div>
 
 <hr>

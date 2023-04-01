@@ -1,1 +1,10 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+button {
+    width: 200px;
+    margin: 10px;
+}
+
+.source-page {
+    width: 200px;
+}
