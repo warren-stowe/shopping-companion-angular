@@ -44,7 +44,7 @@ export class AddRecipeComponent {
 
     this.ingredient = new Ingredient(0, '', '');
 
-    this.aisleOptions = ["Baking", "Bread", "Canned", "Dairy", "Frozen", "International", "Meat", 
+    this.aisleOptions = ["Baking", "Bread", "Canned", "Condiments", "Dairy", "Frozen", "International", "Meat", 
                         "Miscellaneous", "Produce", "Seafood", "Spices"];
 
     this.measurementOptions = [ "units", "cups", "oz", "fluid oz", "tsp", "tbsp", "lb", "grams"]

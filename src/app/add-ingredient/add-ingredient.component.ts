@@ -31,8 +31,8 @@ export class AddIngredientComponent implements OnInit {
     });
 
     this.submissionResult = '';
-    
-    this.aisleOptions = ["Baking", "Bread", "Canned", "Dairy", "Frozen", "International", "Meat", 
+
+    this.aisleOptions = ["Baking", "Bread", "Canned", "Condiments", "Dairy", "Frozen", "International", "Meat", 
                         "Miscellaneous", "Produce", "Seafood", "Spices"];
     
     this.similarIngredientNames = [];
