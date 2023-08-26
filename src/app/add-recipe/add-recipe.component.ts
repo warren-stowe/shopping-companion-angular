@@ -44,11 +44,6 @@ export class AddRecipeComponent {
 
     this.ingredient = new Ingredient(0, '', '');
 
-    this.similarIngredients[0] = new Ingredient(1, "Beef", "Meat");
-    this.similarIngredients[1] = new Ingredient(2, "Turkey", "Meat");
-    this.similarIngredients[2] = new Ingredient(3, "Bread", "Bread");
-
-
     this.aisleOptions = ["Baking", "Bread", "Canned", "Dairy", "Frozen", "International", "Meat", 
                         "Miscellaneous", "Produce", "Seafood", "Spices"];
 
@@ -140,15 +135,9 @@ export class AddRecipeComponent {
 
     this.ingredient.id = ingredient.id;
     this.ingredient.ingredientName = ingredient.ingredientName;
+    this.ingredientForm.controls['ingredientName'].setValue(ingredient.ingredientName);
     this.ingredient.aisle = ingredient.aisle;
+    this.ingredientForm.controls['aisle'].setValue(ingredient.aisle);
     this.isExistingIngredient = true;
-    // this.ingredientForm.get('id')?.setValue(ingredient.id);
-    // this.ingredientForm.get('ingredientName')?.setValue(ingredient.ingredientName);
-    // this.ingredientForm.get('aisle')?.setValue(ingredient.aisle);
-    // this.ingredientForm.setValue({id: ingredient.id});
-    // this.ingredientForm.setValue({ingredientName: ingredient.ingredientName});
-    // this.ingredientForm.setValue({aisle: ingredient.aisle});
-    // console.log("addExistingIngredient");
-    // console.log(this.ingredientForm);
   }
 }

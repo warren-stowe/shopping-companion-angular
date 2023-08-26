@@ -21,21 +21,21 @@ export class AddIngredientComponent implements OnInit {
   ingredientForm: FormGroup;
   similarIngredientNames: Ingredient[];
   aisleOptions: string[];
+  submissionResult: string;
 
   constructor(private formBuilder: FormBuilder, private ingredientService: IngredientService) { 
     this.ingredientForm = new FormGroup({
       ingredientName: new FormControl('', [Validators.required]),
-      aisle: new FormControl('', [Validators.required])
+      aisle: new FormControl('', [Validators.required]),
       
     });
 
+    this.submissionResult = '';
+    
     this.aisleOptions = ["Baking", "Bread", "Canned", "Dairy", "Frozen", "International", "Meat", 
                         "Miscellaneous", "Produce", "Seafood", "Spices"];
     
     this.similarIngredientNames = [];
-    // this.similarIngredientNames[0] = new Ingredient(1, "Beef", "Meat");
-    // this.similarIngredientNames[1] = new Ingredient(2, "Turket", "Meat");
-    // this.similarIngredientNames[2] = new Ingredient(3, "Bread", "Bread");
   }
 
   ngOnInit() {
@@ -49,9 +49,11 @@ export class AddIngredientComponent implements OnInit {
     this.ingredientService.createIngredient(this.ingredientForm.value)
       .subscribe(response => {
         console.log(response);
+        this.submissionResult = "Ingredient Submitted";
         // show success message or redirect to another page here
       }, error => {
         console.error(error);
+        this.submissionResult = "Error submitting ingredient: " + error;
         // show error message here
       });
   }
@@ -59,6 +61,7 @@ export class AddIngredientComponent implements OnInit {
   clear() {
     this.ingredientForm.setValue({ ingredientName: '', aisle: '' });
     this.similarIngredientNames = [];
+    this.submissionResult = '';
   }
 
   getIngredientsByName(ingredientName: string) {

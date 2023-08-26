@@ -35,14 +35,12 @@
 
         <mat-grid-tile colspan="1">
             <mat-form-field appearance="fill">
-                <mat-label>Aisle</mat-label>
-                <input type="text" placeholder="Aisle" matInput formControlName="aisle" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let aisleName of aisleOptions">
-                        <!-- <mat-option value="{{aisleName}}">{{aisleName}} -->
-                        <!-- </mat-option>   -->
+                <mat-select formControlName="aisle" placeholder="Aisle">
+                <div *ngFor="let aisleName of aisleOptions">
+                    <mat-option value="{{aisleName}}">{{aisleName}}
                     </mat-option>
-                </mat-autocomplete>
+                </div>
+                </mat-select>
             </mat-form-field>
         </mat-grid-tile>
 
@@ -55,12 +53,14 @@
 
         <mat-grid-tile colspan="1">
             <mat-form-field appearance="fill">
-                <mat-label>Measurement</mat-label>
-                <input matInput formControlName="measurement" placeholder="Measurement">
+                <mat-select formControlName="measurement" placeholder="Measurement">
+                <div *ngFor="let measurementOption of measurementOptions">
+                    <mat-option value="{{measurementOption}}">{{measurementOption}}
+                    </mat-option>
+                </div>
+                </mat-select>
             </mat-form-field>
         </mat-grid-tile>
-        <!-- <label for="id">Id</label> -->
-        <!-- <input type="number" id="id" formControlName="id"> -->
         
         <mat-grid-tile colspan="1">
             <label for="optional">Optional</label>
