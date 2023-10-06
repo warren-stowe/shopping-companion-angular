@@ -44,7 +44,7 @@ export class AddIngredientComponent implements OnInit {
     this.ingredientService.createIngredient(this.ingredientForm.value)
       .subscribe(response => {
         console.log(response);
-        this.submissionResult = "Ingredient Submitted";
+        this.submissionResult = "Ingredient Submitted Successfully: " + JSON.stringify(response);
         // show success message or redirect to another page here
       }, error => {
         console.error(error);
