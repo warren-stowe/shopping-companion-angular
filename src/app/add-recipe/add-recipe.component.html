@@ -81,7 +81,7 @@
 
 <div *ngIf="display.length > 0">
     <h2>Current Ingredients</h2>
-    <p *ngFor="let ingredient of display">{{ingredient}}</p>
+    <p *ngFor="let ingredient of display; index as i">{{i + 1}} - {{ingredient}}</p>
 </div>
 
 

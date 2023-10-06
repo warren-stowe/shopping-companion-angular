@@ -25,8 +25,8 @@ export class AddRecipeComponent {
   measurementOptions: string[];
 
 
-  constructor(private recipeService: RecipeService, 
-    private ingredientService: IngredientService) { 
+  constructor(private recipeService: RecipeService,
+    private ingredientService: IngredientService) {
     this.recipeForm = new FormGroup({
       recipeName: new FormControl('', Validators.required),
       source: new FormControl('', Validators.required),
@@ -44,7 +44,7 @@ export class AddRecipeComponent {
 
     this.ingredient = new Ingredient(0, '', '');
 
-    this.aisleOptions = ["Baking", "Bread", "Canned", "Condiments", "Dairy", "Frozen", "International", "Meat", 
+    this.aisleOptions = ["Baking", "Bread", "Canned", "Condiments", "Dairy", "Frozen", "International", "Meat",
                         "Miscellaneous", "Produce", "Seafood", "Spices"];
 
     this.measurementOptions = [ "units", "cups", "oz", "fluid oz", "tsp", "tbsp", "lb", "grams"]
@@ -93,7 +93,10 @@ export class AddRecipeComponent {
     }
 
     this.ingredients.push(ingredientQuantity);
-    this.display.push(this.ingredient.ingredientName);
+    this.display.push("Ingredient: " + this.ingredient.ingredientName + 
+    ", Aisle: " + this.ingredient.aisle + ", ID: " + this.ingredient.id + ", Amount: " +
+    quantity.amount + ", Measurement: " + quantity.measurement + ", Optional: " + quantity.optional);
+
     console.log(this.ingredients);
 
     this.clearIngredient();
@@ -120,11 +123,11 @@ export class AddRecipeComponent {
       let response: Observable<Ingredient[]>;
       response = this.ingredientService.getIngredientsByName(ingredientName);
       console.log(response);
-  
+
       response.subscribe(data => {
         this.similarIngredients = data;
       });
-  
+
       console.log(this.similarIngredients);
     }
   }

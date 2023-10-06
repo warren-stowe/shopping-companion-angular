@@ -6,11 +6,6 @@ import { IngredientService } from '../services/ingredient.service';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
 
-// import {MatGridListModule} from '@angular/material/grid-list';
-// import {MatButtonModule} from '@angular/material/button';
-// import {MatFormFieldModule} from '@angular/material/form-field';
-
-
 @Component({
   selector: 'app-add-ingredient',
   templateUrl: './add-ingredient.component.html',
@@ -23,18 +18,18 @@ export class AddIngredientComponent implements OnInit {
   aisleOptions: string[];
   submissionResult: string;
 
-  constructor(private formBuilder: FormBuilder, private ingredientService: IngredientService) { 
+  constructor(private formBuilder: FormBuilder, private ingredientService: IngredientService) {
     this.ingredientForm = new FormGroup({
       ingredientName: new FormControl('', [Validators.required]),
       aisle: new FormControl('', [Validators.required]),
-      
+
     });
 
     this.submissionResult = '';
 
-    this.aisleOptions = ["Baking", "Bread", "Canned", "Condiments", "Dairy", "Frozen", "International", "Meat", 
+    this.aisleOptions = ["Baking", "Bread", "Canned", "Condiments", "Dairy", "Frozen", "International", "Meat",
                         "Miscellaneous", "Produce", "Seafood", "Spices"];
-    
+
     this.similarIngredientNames = [];
   }
 
@@ -69,15 +64,15 @@ export class AddIngredientComponent implements OnInit {
     if (ingredientName.length >= 3) {
 
       // this.similarIngredientNames = [];
-  
+
       let response: Observable<Ingredient[]>;
       response = this.ingredientService.getIngredientsByName(ingredientName);
       console.log(response);
-  
+
       response.subscribe(data => {
         this.similarIngredientNames = data;
       });
-  
+
       console.log(this.similarIngredientNames);
     }
 
